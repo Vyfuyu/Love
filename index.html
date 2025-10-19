@@ -3,87 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Lê ơi, mở quà!</title>
+    <title>Kaori Waguri Profile</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
+    <canvas id="falling-stars-canvas"></canvas>
 
-    <audio id="background-music" src="snaptt.me-36798734 - 2025-10-19T190008.721.mp3" loop></audio>
+    <audio id="background-music" src="https://cdns-preview-d.dzcdn.net/stream/c-d3356843516f49957795393d28646f88-12.mp3" autoplay loop></audio>
 
-    <div id="click-effect-container"></div>
+    <div class="main-border"></div>
 
-    <main id="gift-journey">
+    <header class="dynamic-island">
+        <div id="clock" class="clock">10:10 PM</div>
+        <div class="controls">
+            <button id="theme-toggle">🌙</button>
+        </div>
+    </header>
 
-        <section class="scroll-section" id="intro">
-            <div class="content-wrapper">
-                <h1>Trang Lê ơi!</h1>
-                <p>Anh có vài món quà bí mật muốn tặng em...<br>Kéo xuống để mở nhé!</p>
-                <div class="scroll-down-indicator"></div>
-            </div>
-        </section>
+    <button id="menu-toggle" class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-        <section class="scroll-section gift-section">
-            <div class="content-wrapper">
-                <div class="gift-box" id="gift-box-1">
-                    <div class="gift-lid">
-                        <div class="bow"></div>
-                    </div>
-                    <div class="gift-body"></div>
-                </div>
-                <div class="gift-message">
-                    <h2>Món quà đầu tiên...</h2>
-                    <p>...là nụ cười của em. Nó làm tan chảy trái tim anh mỗi ngày!</p>
-                </div>
-            </div>
-        </section>
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <h3>🛒 Shop Cloud Phone</h3>
+            <ul>
+                <li>Vsphone 30day: 110k</li>
+                <li>Vmos v08 50day: 110k</li>
+                <li>Vmos v06 30day: 110k</li>
+                <li>Vmos v04 30day: 120k</li>
+                <li>Vmos v03 20day: 120k</li>
+            </ul>
+            <p class="note">
+                <strong>Chú ý:</strong> Nếu muốn mua vui lòng mua buổi sáng. Khi bạn mua buổi tối đơn sẽ chậm hơn do server lag.
+            </p>
+            <hr>
+            <h3>🛠️ Shop Tool & Dịch Vụ Code</h3>
+            <ul>
+                <li>Dịch vụ code thuê</li>
+                <li>Sửa chữa, fix bug code</li>
+            </ul>
+        </div>
+    </nav>
 
-        <section class="scroll-section gift-section">
-            <div class="content-wrapper">
-                <div class="gift-box" id="gift-box-2">
-                    <div class="gift-lid">
-                        <div class="bow"></div>
-                    </div>
-                    <div class="gift-body"></div>
-                </div>
-                <div class="gift-message">
-                    <h2>Món quà thứ hai...</h2>
-                    <p>...là những lúc em quan tâm, lo lắng cho anh. Anh trân trọng lắm đó!</p>
-                </div>
-            </div>
-        </section>
-        
-        <section class="scroll-section gift-section">
-            <div class="content-wrapper">
-                <div class="gift-box" id="gift-box-3">
-                    <div class="gift-lid">
-                        <div class="bow"></div>
-                    </div>
-                    <div class="gift-body"></div>
-                </div>
-                <div class="gift-message">
-                    <h2>Và món quà thứ ba...</h2>
-                    <p>...chính là toàn bộ con người em. Em là điều tuyệt vời nhất của anh!</p>
-                </div>
-            </div>
-        </section>
 
-        <section class="scroll-section" id="final-prompt">
-            <div class="content-wrapper">
-                <h2>Và món quà cuối cùng...</h2>
-                <p>...quan trọng nhất. Em sẵn sàng nhận chứ?</p>
-                <button id="final-button">Mở ngay!</button>
-            </div>
-        </section>
+    <main class="profile-container">
+        <div class="avatar-wrapper">
+            <img src="https://i.postimg.cc/y8P8LpY5/f3db98328c8b18d36f1c48002878d2c2.jpg" alt="Avatar" class="avatar">
+        </div>
 
+        <h1 class="name" data-text="Kaori Waguri">Kaori Waguri</h1>
+
+        <p class="bio">
+            Hacker wannabe :)) Chuyên gia lướt phím không mỏi tay, cân mọi deadline vũ trụ. Đam mê code và những thứ hay ho trên Internet.
+        </p>
+
+        <div class="social-links">
+            <a href="#" class="social-button" target="_blank">
+                <img src="https://i.postimg.cc/rFCrYWgC/images-5-2025-10-19-T224407-402.jpg" alt="TikTok">
+                <span>TikTok</span>
+            </a>
+            <a href="#" class="social-button" target="_blank">
+                <img src="https://i.postimg.cc/c4sHCzMh/Facebook-logo-36x36-svg-2025-10-19-T224601-455.png" alt="Facebook">
+                <span>Facebook</span>
+            </a>
+            <a href="#" class="social-button" target="_blank">
+                <img src="https://i.postimg.cc/pVBWwZbL/t-i-xu-ng-2025-10-19-T224650-554.jpg" alt="Instagram">
+                <span>Instagram</span>
+            </a>
+            <a href="tel:0123456789" class="social-button"> <img src="https://i.postimg.cc/yxfzkLsL/images-2025-10-19-T224745-097.png" alt="Phone">
+                <span>Call Me</span>
+            </a>
+        </div>
     </main>
 
-    <div id="final-message-screen">
-        <h1 class="love-text">Anh Yêu Em</h1>
-        <div class="heart-final">❤️</div>
-    </div>
+    <footer class="footer">
+        &copy; 2025 Bản quyền trang web thuộc Kaori Waguri
+    </footer>
 
     <script src="script.js"></script>
 </body>
