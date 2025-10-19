@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Tặng Trang Lê ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <audio id="background-music" src="nhacnen.mp3" loop></audio>
+
+    <div class="app-container">
+        <div id="stage-one" class="stage active">
+            <div class="intro-text">
+                <h1>Trang Lê ơi, lại đây anh nhờ chút!</h1>
+                <p>Trái tim này bị vỡ mất rồi, em ghép nó lại giúp anh được không?</p>
+            </div>
+            <div id="puzzle-container">
+                <div id="drop-zone"></div>
+                <div id="heart-left" class="heart-piece draggable"></div>
+                <div id="heart-right" class="heart-piece draggable"></div>
+            </div>
+        </div>
+
+        <div id="stage-two" class="stage">
+            <div class="magic-text-container">
+                <h2>Một thông điệp bí ẩn dành cho em...</h2>
+                <p>Hãy dùng chuột để giải mã nó nhé!</p>
+                <div id="magic-text" class="magic-text"></div>
+                <button id="next-stage-btn" class="hidden">Tuyệt vời! Ấn vào đây để xem điều cuối cùng</button>
+            </div>
+        </div>
+
+        <div id="stage-three" class="stage">
+            <div class="final-message">
+                <h1 class="love-text">Anh Yêu Em</h1>
+                <div class="heart-final">❤️</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
