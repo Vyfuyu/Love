@@ -3,45 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gửi Tặng Trang Lê ❤️</title>
+    <title>Trang Lê ơi, mở quà!</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="background-music" src="snaptt.me-36798734 - 2025-10-19T190008.721.mp3" loop></audio>
+    <audio id="background-music" src="nhacnen.mp3" loop></audio>
 
-    <div class="app-container">
-        <div id="stage-one" class="stage active">
-            <div class="intro-text">
-                <h1>Trang Lê ơi, lại đây anh nhờ chút!</h1>
-                <p>Trái tim này bị vỡ mất rồi, em ghép nó lại giúp anh được không?</p>
-            </div>
-            <div id="puzzle-container">
-                <div id="drop-zone"></div>
-                <div id="heart-left" class="heart-piece draggable"></div>
-                <div id="heart-right" class="heart-piece draggable"></div>
-            </div>
-        </div>
+    <div id="click-effect-container"></div>
 
-        <div id="stage-two" class="stage">
-            <div class="magic-text-container">
-                <h2>Một thông điệp bí ẩn dành cho em...</h2>
-                <p>Hãy dùng chuột để giải mã nó nhé!</p>
-                <div id="magic-text" class="magic-text"></div>
-                <button id="next-stage-btn" class="hidden">Tuyệt vời! Ấn vào đây để xem điều cuối cùng</button>
-            </div>
-        </div>
+    <main id="gift-journey">
 
-        <div id="stage-three" class="stage">
-            <div class="final-message">
-                <h1 class="love-text">Anh Yêu Em</h1>
-                <div class="heart-final">❤️</div>
+        <section class="scroll-section" id="intro">
+            <div class="content-wrapper">
+                <h1>Trang Lê ơi!</h1>
+                <p>Anh có vài món quà bí mật muốn tặng em...<br>Kéo xuống để mở nhé!</p>
+                <div class="scroll-down-indicator"></div>
             </div>
-        </div>
+        </section>
 
+        <section class="scroll-section gift-section">
+            <div class="content-wrapper">
+                <div class="gift-box" id="gift-box-1">
+                    <div class="gift-lid">
+                        <div class="bow"></div>
+                    </div>
+                    <div class="gift-body"></div>
+                </div>
+                <div class="gift-message">
+                    <h2>Món quà đầu tiên...</h2>
+                    <p>...là nụ cười của em. Nó làm tan chảy trái tim anh mỗi ngày!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="scroll-section gift-section">
+            <div class="content-wrapper">
+                <div class="gift-box" id="gift-box-2">
+                    <div class="gift-lid">
+                        <div class="bow"></div>
+                    </div>
+                    <div class="gift-body"></div>
+                </div>
+                <div class="gift-message">
+                    <h2>Món quà thứ hai...</h2>
+                    <p>...là những lúc em quan tâm, lo lắng cho anh. Anh trân trọng lắm đó!</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="scroll-section gift-section">
+            <div class="content-wrapper">
+                <div class="gift-box" id="gift-box-3">
+                    <div class="gift-lid">
+                        <div class="bow"></div>
+                    </div>
+                    <div class="gift-body"></div>
+                </div>
+                <div class="gift-message">
+                    <h2>Và món quà thứ ba...</h2>
+                    <p>...chính là toàn bộ con người em. Em là điều tuyệt vời nhất của anh!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="scroll-section" id="final-prompt">
+            <div class="content-wrapper">
+                <h2>Và món quà cuối cùng...</h2>
+                <p>...quan trọng nhất. Em sẵn sàng nhận chứ?</p>
+                <button id="final-button">Mở ngay!</button>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="final-message-screen">
+        <h1 class="love-text">Anh Yêu Em</h1>
+        <div class="heart-final">❤️</div>
     </div>
 
     <script src="script.js"></script>
