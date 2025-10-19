@@ -1,82 +1,119 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- BẬT NHẠC ---
-    // Phải click 1 phát nó mới cho bật nhạc, luật của trình duyệt á ní
-    document.body.addEventListener('click', () => {
-        document.getElementById('background-music').play();
-    }, { once: true });
+    // --- HIỆU ỨNG SAO BĂNG RƠI ---
+    const canvas = document.getElementById('falling-stars-canvas');
+    const ctx = canvas.getContext('2d');
 
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    });
+
+    const stars = [];
+    const numStars = 100;
+
+    class Star {
+        constructor() {
+            this.x = Math.random() * w;
+            this.y = Math.random() * h;
+            this.len = Math.random() * 2 + 1;
+            this.speed = Math.random() * 2 + 0.5;
+            this.color = `rgba(0, 255, 204, ${Math.random()})`;
+        }
+
+        update() {
+            this.y += this.speed;
+            if (this.y > h) {
+                this.y = 0;
+                this.x = Math.random() * w;
+            }
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y);
+            ctx.lineTo(this.x, this.y + this.len);
+            ctx.strokeStyle = this.color;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+        }
+    }
+
+    for (let i = 0; i < numStars; i++) {
+        stars.push(new Star());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, w, h);
+        stars.forEach(star => {
+            star.update();
+            star.draw();
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    // --- ĐỒNG HỒ ---
+    const clockElement = document.getElementById('clock');
+    function updateClock() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        clockElement.textContent = `${hours}:${minutes}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // --- CHẾ ĐỘ SÁNG/TỐI ---
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+        themeToggle.textContent = isLight ? '☀️' : '🌙';
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
+    // Load theme đã lưu
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.add('light-mode');
+        themeToggle.textContent = '☀️';
+    }
+
+    // --- MENU TOGGLE ---
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+    });
     
-    // --- HIỆU ỨNG CLICK CHUỘT ---
-    const particleContainer = document.getElementById('click-effect-container');
-    document.addEventListener('click', (e) => {
-        for (let i = 0; i < 20; i++) {
-            createParticle(e.clientX, e.clientY);
+    // Đóng menu khi click ra ngoài
+    document.addEventListener('click', (event) => {
+        if (!sidebar.contains(event.target) && !menuToggle.contains(event.target) && sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
         }
     });
 
-    function createParticle(x, y) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = `${x}px`;
-        particle.style.top = `${y}px`;
-        
-        // Tạo hướng bay ngẫu nhiên cho hạt
-        const randomX = (Math.random() - 0.5) * 150; // Bay xa 150px
-        const randomY = (Math.random() - 0.5) * 150;
-        
-        particle.style.setProperty('--x', `${randomX}px`);
-        particle.style.setProperty('--y', `${randomY}px`);
-
-        particleContainer.appendChild(particle);
-
-        // Xóa hạt sau khi bay xong
+    // --- HIỆU ỨNG CLICK CHUỘT ---
+    document.addEventListener('click', (e) => {
+        let effect = document.createElement('div');
+        effect.className = 'click-effect';
+        effect.style.top = `${e.clientY}px`;
+        effect.style.left = `${e.clientX}px`;
+        document.body.appendChild(effect);
         setTimeout(() => {
-            particle.remove();
-        }, 700);
-    }
+            effect.remove();
+        }, 500);
+    });
 
-    
-    // --- HIỆU ỨNG CUỘN CHUỘT (SCROLL) ---
-    const sections = document.querySelectorAll('.scroll-section');
-    
-    // Thằng này chuyên đi rình xem ní cuộn tới đâu
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-            }
+    // --- Xử lý auto play nhạc (một số trình duyệt chặn) ---
+    const music = document.getElementById('background-music');
+    document.body.addEventListener('click', () => {
+        music.play().catch(error => {
+            // Lỗi này thường xảy ra nếu người dùng chưa tương tác, không sao cả
+            console.log("User interaction is needed to play audio.");
         });
-    }, {
-        threshold: 0.25 // Hiện khi 25% của mục lọt vào màn hình
-    });
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-
-    
-    // --- LOGIC MỞ HỘP QUÀ ---
-    const giftBoxes = document.querySelectorAll('.gift-box');
-    giftBoxes.forEach(box => {
-        box.addEventListener('click', () => {
-            box.classList.add('opened');
-        });
-    });
-
-    
-    // --- LOGIC HIỆN MÀN HÌNH CUỐI CÙNG ---
-    const finalButton = document.getElementById('final-button');
-    const finalScreen = document.getElementById('final-message-screen');
-    const journey = document.getElementById('gift-journey');
-
-    finalButton.addEventListener('click', () => {
-        journey.style.transition = 'opacity 1s ease-out';
-        journey.style.opacity = '0';
-        
-        setTimeout(() => {
-            journey.style.display = 'none';
-            finalScreen.classList.add('active');
-        }, 1000);
-    });
+    }, { once: true }); // Chỉ chạy 1 lần đầu
 });
