@@ -1,0 +1,209 @@
+/* Tổng thể trang web */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+    color: #fff;
+    overflow: hidden;
+    perspective: 1000px; /* Hiệu ứng 3D nè */
+}
+
+.app-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Style cho các màn chơi */
+.stage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transform: rotateY(-90deg) scale(0.8);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    visibility: hidden;
+}
+
+.stage.active {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+    visibility: visible;
+}
+
+h1, h2 {
+    font-family: 'Pacifico', cursive;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Màn 1: Ghép tim */
+.intro-text h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+.intro-text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+#puzzle-container {
+    position: relative;
+    width: 300px;
+    height: 250px;
+}
+
+#drop-zone {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 180px;
+    border: 3px dashed rgba(255, 255, 255, 0.5);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.heart-piece {
+    width: 100px;
+    height: 160px;
+    position: absolute;
+    background-color: #ff4757;
+    cursor: grab;
+    transition: all 0.3s ease;
+    filter: drop-shadow(5px 5px 10px rgba(0,0,0,0.3));
+}
+
+.heart-piece:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+#heart-left {
+    top: 20px;
+    left: 20px;
+    border-radius: 100px 0 0 100px;
+}
+
+#heart-right {
+    top: 20px;
+    right: 20px;
+    border-radius: 0 100px 100px 0;
+}
+
+.completed {
+    background-color: #ff6b81;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Màn 2: Mê cung kí tự */
+.magic-text-container {
+    max-width: 800px;
+}
+
+.magic-text {
+    margin: 30px 0;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.7);
+    user-select: none;
+}
+
+.magic-text span {
+    transition: color 0.3s, text-shadow 0.3s;
+    display: inline-block;
+}
+
+.magic-text span:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff4757;
+    transform: scale(1.2) rotate(5deg);
+}
+
+button {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    background-color: #fff;
+    color: #ff4757;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Màn 3: Lời yêu thương */
+.final-message {
+    text-align: center;
+}
+
+.love-text {
+    font-size: 7rem;
+    color: white;
+    animation: text-glow 2s ease-in-out infinite alternate;
+}
+
+.heart-final {
+    font-size: 5rem;
+    color: #ff4757;
+    animation: heart-beat 1.5s ease-in-out infinite;
+}
+
+@keyframes text-glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+}
+
+@keyframes heart-beat {
+    0% { transform: scale(1); }
+    10% { transform: scale(0.9); }
+    30% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+
+/* Cho điện thoại nó đẹp hơn */
+@media (max-width: 768px) {
+    .intro-text h1 { font-size: 2rem; }
+    .intro-text p { font-size: 1rem; }
+    .love-text { font-size: 3.5rem; }
+    .magic-text { font-size: 1rem; line-height: 1.8rem; }
+}
